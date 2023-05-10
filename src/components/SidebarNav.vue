@@ -1,0 +1,11 @@
+<template>
+  <aside>
+    <nav>
+      <ul>
+        <li>Search</li>
+        <li>WatchList</li>
+        <li>News</li>
+      </ul>
+    </nav>
+  </aside>
+</template>
