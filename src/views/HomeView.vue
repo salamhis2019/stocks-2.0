@@ -1,24 +1,19 @@
 <script lang="ts" setup>
-import SidebarNav from "@/components/SidebarNav.vue"
-import SearchBar from "@/components/SearchBar.vue"
-import CardContainer from "@/components/UI/CardContainer.vue"
+import SidebarNav from '@/components/SidebarNav.vue'
+import StockDashboard from '@/components/StockDashboard.vue';
 
-import useStocksDataStore from "@/stores/stocksData.store.ts"
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-const { symbol, data } = useStocksDataStore()
+const route = useRoute()
+const param = computed(() => route.path)
 </script>
 
 <template>
   <div class="flex h-full w-full">
     <SidebarNav />
     <div class="w-full">
-      <SearchBar />
-      <div class="p-6">
-        <h2 class="mb-4 text-xl font-semibold">Price Action</h2>
-        <CardContainer>
-          {{ symbol }}
-        </CardContainer>
-      </div>
+      <StockDashboard v-if="param === '/dashboard'" />
     </div>
   </div>
 </template>
