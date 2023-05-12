@@ -9,12 +9,18 @@ const inputText = ref<any>('')
 
 <template>
   <div class="flex h-16 w-full items-center bg-neutral-200 p-6">
-    <input
-      v-model="inputText"
-      type="text"
-      placeholder="Symbol"
-      class="w-1/2 rounded-md border-[0.5px] border-neutral-300 p-2"
-      @keydown.enter.prevent="fetchStockData(inputText)"
-    />
+    <div class="relative w-1/2">
+      <input
+        v-model="inputText"
+        type="text"
+        placeholder="Symbol"
+        class="z-10 w-full rounded-md border-[0.5px] border-neutral-300 p-2 pr-10 focus:placeholder-transparent"
+        @keydown.enter.prevent="fetchStockData(inputText)"
+      />
+      <span
+        class="material-symbols-outlined pointer-events-none absolute inset-y-0 right-5 z-20 flex w-3 cursor-pointer items-center pr-3 opacity-50"
+        >search</span
+      >
+    </div>
   </div>
 </template>
