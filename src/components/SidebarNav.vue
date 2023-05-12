@@ -43,7 +43,7 @@ const isLinkActive = (link: any) => {
         </li>
         <li>
           <router-link
-            to="/"
+            to="/watchlist"
             class="flex cursor-pointer items-center gap-4 rounded-md p-2 duration-100"
             :class="isLinkActive('/watchlist').value"
           >
@@ -53,7 +53,7 @@ const isLinkActive = (link: any) => {
         </li>
         <li>
           <router-link
-            to="/"
+            to="/news"
             class="flex cursor-pointer items-center gap-4 rounded-md p-2 duration-100"
             :class="isLinkActive('/news').value"
           >
