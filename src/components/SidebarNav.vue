@@ -7,20 +7,20 @@
     <nav class="flex h-[calc(100%-75px)] flex-col justify-between">
       <ul class="flex flex-col gap-3">
         <li class="flex items-center gap-2">
-          <span>☰</span>
+          <span class="material-symbols-outlined">grid_view</span>
           Dashboard
         </li>
         <li class="flex items-center gap-2">
-          <span>☰</span>
+          <span class="material-symbols-outlined">list_alt</span>
           Watchlist
         </li>
         <li class="flex items-center gap-2">
-          <span>☰</span>
+          <span class="material-symbols-outlined">feed</span>
           News
         </li>
       </ul>
       <div class="flex items-center gap-2">
-        <span>☰</span>
+        <span class="material-symbols-outlined">account_circle</span>
         Login
       </div>
     </nav>
