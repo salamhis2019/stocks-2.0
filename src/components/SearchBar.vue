@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import useStockDataStore from "@/stores/stocksData.store.ts";
 
-const { symbol } = useStockDataStore()
+const { fetchStockData } = useStockDataStore()
 
 const inputText = ref<any>('')
 </script>
@@ -14,6 +14,7 @@ const inputText = ref<any>('')
       type="text"
       placeholder="Symbol"
       class="w-1/2 rounded-md border-[0.5px] border-neutral-300 p-2"
+      @keydown.enter.prevent="fetchStockData(inputText)"
     />
   </div>
 </template>
