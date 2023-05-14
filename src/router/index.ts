@@ -10,13 +10,11 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/dashboard/',
-      name: 'dashboard',
+      path: '/dashboard',
       component: HomeView
     },
     {
       path: '/dashboard/:symbol',
-      name: 'dashboard',
       component: HomeView
     }
   ]

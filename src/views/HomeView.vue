@@ -13,7 +13,7 @@ const param = computed(() => route.path)
   <div class="flex h-full w-full">
     <SidebarNav />
     <div class="w-full">
-      <StockDashboard v-if="param === '/dashboard'" />
+      <StockDashboard />
     </div>
   </div>
 </template>
