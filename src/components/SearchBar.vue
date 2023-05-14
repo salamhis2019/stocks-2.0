@@ -8,7 +8,7 @@ const inputText = ref<any>('')
 </script>
 
 <template>
-  <div class="flex h-16 w-full items-center bg-neutral-200 p-6">
+  <div class="flex w-full items-center px-6 pt-6">
     <div class="relative w-1/2">
       <input
         v-model="inputText"
