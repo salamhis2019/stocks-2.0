@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import useStockDataStore from "@/stores/stocksData.store.ts";
 
 const { fetchStockData } = useStockDataStore()
 
+const route = useRoute()
 const inputText = ref<any>('')
+const param = ref<any>(route.params.symbol)
 </script>
 
 <template>
-  <div class="flex h-16 w-full items-center bg-neutral-200 p-6">
+  <div class="flex w-full items-center px-6 pt-6">
     <div class="relative w-1/2">
       <input
         v-model="inputText"
