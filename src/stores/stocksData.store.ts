@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 
 interface State {
-  symbol: string
   apiKey: string
   data: any
 }
@@ -10,7 +9,6 @@ interface State {
 export const useProblemsStore = defineStore('stocks', {
   state: (): State => {
     return {
-      symbol: '',
       apiKey: 'LTSY55G9R1CJFQ11',
       data: null
     }
