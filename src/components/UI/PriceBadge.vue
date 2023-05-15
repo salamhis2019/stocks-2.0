@@ -18,7 +18,7 @@ const props = defineProps({
   }
 })
 
-const baseClasses = 'flex h-fit items-center gap-2 rounded-md px-3 py-0.5 text-center'
+const baseClasses = 'flex h-fit items-center gap-2 rounded-md px-3 py-0.5 text-center text-sm'
 
 const colorClasses: any = {
   up: 'bg-[#2FE900]',
@@ -50,6 +50,6 @@ const priceChangeSymbol = computed(() => {
 <template>
   <div :class="clsx(baseClasses, colorClasses[trending])">
     <span>{{ price }}</span>
-    <span class="material-symbols-outlined">{{ priceChangeSymbol }}</span>
+    <span class="material-symbols-outlined text-sm font-semibold">{{ priceChangeSymbol }}</span>
   </div>
 </template>
