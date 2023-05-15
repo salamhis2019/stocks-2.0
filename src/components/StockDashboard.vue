@@ -63,19 +63,19 @@ const date = computed(() => {
   <div class="p-6">
     <h2 class="mb-4 text-xl font-semibold">Price Action</h2>
     <CardContainer>
-      <header>
+      <header class="mb-2">
         <h1 class="text-2xl font-semibold">
           {{ symbol }}
         </h1>
       </header>
-      <h2>Stock and Price Overview</h2>
+      <h2 class="text-neutral-600">Stock and Price Overview</h2>
       <div class="flex items-center gap-2">
         <h2 class="text-3xl font-bold">
           {{ price }}
         </h2>
         <PriceBadge :price="priceChange" />
       </div>
-      {{ date }}
+      <p class="text-sm text-neutral-500">{{ date }}</p>
     </CardContainer>
   </div>
 </template>
