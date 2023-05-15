@@ -9,7 +9,7 @@ import { storeToRefs } from 'pinia'
 import useStocksDataStore from '@/stores/stocksData.store.ts'
 
 const stocksDataStore = useStocksDataStore()
-const { dailyData }: any = storeToRefs(stocksDataStore)
+const { dailyData, logoUrl }: any = storeToRefs(stocksDataStore)
 
 const metaData: any = computed(() => {
   const values = Object.values(dailyData.value)
@@ -63,7 +63,8 @@ const date = computed(() => {
   <div class="p-6">
     <h2 class="mb-4 text-xl font-semibold">Price Action</h2>
     <CardContainer>
-      <header class="mb-2">
+      <header class="mb-2 flex items-center gap-2">
+        <img :src="logoUrl" class="h-12" alt="" />
         <h1 class="text-2xl font-semibold">
           {{ symbol }}
         </h1>
