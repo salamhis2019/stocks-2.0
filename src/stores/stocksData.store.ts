@@ -5,7 +5,7 @@ interface State {
   apiKey: string
   finnhubApiKey: string
   dailyData: any
-  logoUrl: string
+  companyData: any
 }
 
 export const useProblemsStore = defineStore('stocks', {
@@ -14,7 +14,7 @@ export const useProblemsStore = defineStore('stocks', {
       apiKey: 'LTSY55G9R1CJFQ11',
       finnhubApiKey: 'chgtbbpr01qnp48q7130chgtbbpr01qnp48q713g',
       dailyData: {},
-      logoUrl: ''
+      companyData: ''
     }
   },
   actions: {
@@ -37,9 +37,8 @@ export const useProblemsStore = defineStore('stocks', {
           `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${this.finnhubApiKey}`
         )
         .then((response) => {
-          const companyProfile = response.data
-          const logoUrl = companyProfile.logo
-          this.logoUrl = logoUrl
+          console.log(response)
+          this.companyData = response.data
         })
         .catch((error) => {
           console.error('Error occurred while fetching company profile:', error)
