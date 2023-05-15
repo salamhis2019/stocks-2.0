@@ -73,7 +73,7 @@ const date = computed(() => {
         <h2 class="text-3xl font-bold">
           {{ price }}
         </h2>
-        <PriceBadge :trending="trending" :symbol="priceChangeSymbol" :price="priceChange" />
+        <PriceBadge :price="priceChange" />
       </div>
       {{ date }}
     </CardContainer>
