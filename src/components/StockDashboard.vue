@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import SearchBar from '@/components/SearchBar.vue'
 import CardContainer from '@/components/UI/CardContainer.vue'
+import PriceBadge from '@/components/UI/PriceBadge.vue'
 
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
@@ -8,7 +9,7 @@ import { storeToRefs } from 'pinia'
 import useStocksDataStore from '@/stores/stocksData.store.ts'
 
 const stocksDataStore = useStocksDataStore()
-const { apiKey, dailyData }: any = storeToRefs(stocksDataStore)
+const { dailyData }: any = storeToRefs(stocksDataStore)
 
 const metaData: any = computed(() => {
   const values = Object.values(dailyData.value)
@@ -46,7 +47,7 @@ const previousClosingPrice = computed(() => {
   return ''
 })
 
-const priceChange = computed(() => (price.value - previousClosingPrice.value).toFixed(2))
+const priceChange = computed(() => Number(price.value - previousClosingPrice.value).toFixed(2))
 
 const date = computed(() => {
   if (metaData.value) {
@@ -72,12 +73,7 @@ const date = computed(() => {
         <h2 class="text-3xl font-bold">
           {{ price }}
         </h2>
-        <div class="flex h-fit items-center gap-2 rounded-md bg-[#2FE900] px-3 py-0.5 text-center">
-          <span class="text-sm text-center">
-            {{ priceChange }}
-          </span>
-          <span class="material-symbols-outlined">trending_up</span>
-        </div>
+        <PriceBadge :trending="trending" :symbol="priceChangeSymbol" :price="priceChange" />
       </div>
       {{ date }}
     </CardContainer>
