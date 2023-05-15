@@ -3,14 +3,18 @@ import axios from 'axios'
 
 interface State {
   apiKey: string
-  dailyData: any,
+  finnhubApiKey: string
+  dailyData: any
+  companyData: any
 }
 
 export const useProblemsStore = defineStore('stocks', {
   state: (): State => {
     return {
       apiKey: 'LTSY55G9R1CJFQ11',
-      dailyData: {}
+      finnhubApiKey: 'chgtbbpr01qnp48q7130chgtbbpr01qnp48q713g',
+      dailyData: {},
+      companyData: ''
     }
   },
   actions: {
@@ -27,6 +31,17 @@ export const useProblemsStore = defineStore('stocks', {
         })
         .catch((error) => {
           console.error(error)
+        })
+      axios
+        .get(
+          `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${this.finnhubApiKey}`
+        )
+        .then((response) => {
+          console.log(response)
+          this.companyData = response.data
+        })
+        .catch((error) => {
+          console.error('Error occurred while fetching company profile:', error)
         })
     }
   }
