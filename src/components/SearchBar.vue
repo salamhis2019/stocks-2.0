@@ -8,6 +8,7 @@ const { fetchStockData } = useStockDataStore()
 const route = useRoute()
 const inputText = ref<any>('')
 const param = ref<any>(route.params.symbol)
+const timeSeries = ref<any>('TIME_SERIES_DAILY_ADJUSTED')
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const param = ref<any>(route.params.symbol)
         type="text"
         placeholder="Symbol"
         class="z-10 w-full rounded-md border-[0.5px] border-neutral-300 p-2 pr-10 focus:placeholder-transparent"
-        @keydown.enter.prevent="fetchStockData(inputText)"
+        @keydown.enter.prevent="fetchStockData(inputText, timeSeries)"
       />
       <span
         class="material-symbols-outlined pointer-events-none absolute inset-y-0 right-5 z-20 flex w-3 cursor-pointer items-center pr-3 opacity-50"

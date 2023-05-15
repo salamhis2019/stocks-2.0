@@ -1,10 +1,60 @@
 <script lang="ts" setup>
-import SearchBar from "@/components/SearchBar.vue"
-import CardContainer from "@/components/UI/CardContainer.vue"
+import SearchBar from '@/components/SearchBar.vue'
+import CardContainer from '@/components/UI/CardContainer.vue'
 
-import useStocksDataStore from "@/stores/stocksData.store.ts"
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 
-const { symbol } = useStocksDataStore()
+import useStocksDataStore from '@/stores/stocksData.store.ts'
+
+const stocksDataStore = useStocksDataStore()
+const { apiKey, dailyData }: any = storeToRefs(stocksDataStore)
+
+const metaData: any = computed(() => {
+  const values = Object.values(dailyData.value)
+  return values[0]
+})
+
+const dailyTimeSeriesData: any = computed(() => {
+  const values = Object.values(dailyData.value);
+  return values[1]
+})
+
+const symbol = computed(() => {
+  if (metaData.value) {
+    const keys = Object.keys(metaData.value);
+    return metaData.value[keys[1]]
+  }
+  return ''
+})
+
+const price = computed(() => {
+  if (dailyTimeSeriesData.value) {
+    const closingData: any = Object.values(dailyTimeSeriesData.value)[0]
+    const closingDataKeys = Object.keys(closingData)
+    return closingData[closingDataKeys[3]]
+  }
+  return ''
+})
+
+const previousClosingPrice = computed(() => {
+  if (dailyTimeSeriesData.value) {
+    const closingData: any = Object.values(dailyTimeSeriesData.value)[1]
+    const closingDataKeys = Object.keys(closingData)
+    return closingData[closingDataKeys[3]]
+  }
+  return ''
+})
+
+const priceChange = computed(() => (price.value - previousClosingPrice.value).toFixed(2))
+
+const date = computed(() => {
+  if (metaData.value) {
+    const keys = Object.keys(metaData.value);
+    return metaData.value[keys[2]]
+  }
+  return ''
+})
 </script>
 
 <template>
@@ -12,7 +62,24 @@ const { symbol } = useStocksDataStore()
   <div class="p-6">
     <h2 class="mb-4 text-xl font-semibold">Price Action</h2>
     <CardContainer>
-      {{ symbol }}
+      <header>
+        <h1 class="text-2xl font-semibold">
+          {{ symbol }}
+        </h1>
+      </header>
+      <h2>Stock and Price Overview</h2>
+      <div class="flex items-center gap-2">
+        <h2 class="text-3xl font-bold">
+          {{ price }}
+        </h2>
+        <div class="flex h-fit items-center gap-2 rounded-md bg-[#2FE900] px-3 py-0.5 text-center">
+          <span class="text-sm text-center">
+            {{ priceChange }}
+          </span>
+          <span class="material-symbols-outlined">trending_up</span>
+        </div>
+      </div>
+      {{ date }}
     </CardContainer>
   </div>
 </template>
