@@ -30,17 +30,20 @@ const currentPrice = computed(() => {
   return ''
 })
 
-const previousClosingPrice = computed(() => {
+const previousClosingPrice: any = computed(() => {
   if (dailyTimeSeriesData.value) {
     const closingData: any = Object.values(dailyTimeSeriesData.value)[1]
     const closingDataKeys = Object.keys(closingData)
-    return closingData[closingDataKeys[3]]
+    return {
+      price: closingData[closingDataKeys[3]],
+      date: Object.keys(dailyTimeSeriesData.value)[1]
+    }
   }
   return ''
 })
 
 const priceChange = computed(() =>
-  Number(currentPrice.value - previousClosingPrice.value).toFixed(2)
+  Number(currentPrice.value - previousClosingPrice.value.price).toFixed(2)
 )
 
 const date = computed(() => {
@@ -52,7 +55,7 @@ const date = computed(() => {
 })
 
 const percentChange = computed(() =>
-  ((Number(priceChange.value) / Number(previousClosingPrice.value)) * 100).toFixed(2)
+  ((Number(priceChange.value) / Number(previousClosingPrice.value.price)) * 100).toFixed(2)
 )
 
 const classes = computed(() => {
@@ -87,9 +90,21 @@ const classes = computed(() => {
         <p class="text-sm text-neutral-500">{{ date }}</p>
       </CardContainer>
       <CardContainer>
-        <header>
-          <h2>Today</h2>
-        </header>
+        <div class="flex h-full flex-col justify-between">
+          <header>
+            <h2>Today</h2>
+          </header>
+          <div class="flex w-full justify-between">
+            <div>
+              <p>Open</p>
+              <p class="text-3xl font-bold">{{ previousClosingPrice }}</p>
+              <p>{{ date }}</p>
+            </div>
+            <div>
+              <p>Previous Close</p>
+            </div>
+          </div>
+        </div>
       </CardContainer>
     </div>
   </div>
