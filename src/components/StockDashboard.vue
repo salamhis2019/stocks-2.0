@@ -21,11 +21,11 @@ const dailyTimeSeriesData: any = computed(() => {
   return values[1]
 })
 
-const currentPrice = computed(() => {
+const currentPrice: any = computed(() => {
   if (dailyTimeSeriesData.value) {
     const closingData: any = Object.values(dailyTimeSeriesData.value)[0]
     const closingDataKeys = Object.keys(closingData)
-    return closingData[closingDataKeys[3]]
+    return { close: closingData[closingDataKeys[3]], open: closingData[closingDataKeys[0]] }
   }
   return ''
 })
@@ -43,7 +43,7 @@ const previousClosingPrice: any = computed(() => {
 })
 
 const priceChange = computed(() =>
-  Number(currentPrice.value - previousClosingPrice.value.price).toFixed(2)
+  Number(currentPrice.value.close - previousClosingPrice.value.price).toFixed(2)
 )
 
 const date = computed(() => {
@@ -82,7 +82,7 @@ const classes = computed(() => {
         <h2 class="text-neutral-600">Stock and Price Overview</h2>
         <div class="flex items-center gap-2">
           <h2 class="my-1 text-3xl font-bold">
-            {{ currentPrice }}
+            {{ currentPrice.close }}
           </h2>
           <PriceBadge :price="priceChange" />
           <p class="text-sm font-medium" :class="classes">({{ percentChange }}%)</p>
@@ -92,16 +92,18 @@ const classes = computed(() => {
       <CardContainer>
         <div class="flex h-full flex-col justify-between">
           <header>
-            <h2>Today</h2>
+            <h2 class="text-xl font-semibold">Today</h2>
           </header>
           <div class="flex w-full justify-between">
-            <div>
-              <p>Open</p>
-              <p class="text-3xl font-bold">{{ previousClosingPrice }}</p>
-              <p>{{ date }}</p>
+            <div class="flex flex-col gap-2">
+              <p class="text-neutral-600">Open</p>
+              <p class="text-3xl font-bold">{{ currentPrice.open }}</p>
+              <p class="text-sm text-neutral-500">{{ date }}</p>
             </div>
-            <div>
-              <p>Previous Close</p>
+            <div class="flex flex-col gap-2">
+              <p class="text-neutral-600">Previous Close</p>
+              <p class="text-3xl font-bold">{{ previousClosingPrice.price }}</p>
+              <p class="text-sm text-neutral-500">{{ previousClosingPrice.date }}</p>
             </div>
           </div>
         </div>
