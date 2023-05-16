@@ -50,6 +50,20 @@ const date = computed(() => {
   }
   return ''
 })
+
+const percentChange = computed(() =>
+  ((Number(priceChange.value) / Number(previousClosingPrice.value)) * 100).toFixed(2)
+)
+
+const classes = computed(() => {
+  if (Number(percentChange.value) > 0) {
+    return 'text-green-600'
+  } else if (Number(percentChange.value) === 0) {
+    return 'text-neutral-600'
+  } else {
+    return 'text-red-600'
+  }
+})
 </script>
 
 <template>
@@ -67,6 +81,7 @@ const date = computed(() => {
           {{ currentPrice }}
         </h2>
         <PriceBadge :price="priceChange" />
+        <p class="text-sm font-medium" :class="classes">({{ percentChange }}%)</p>
       </div>
       <p class="text-sm text-neutral-500">{{ date }}</p>
     </CardContainer>
