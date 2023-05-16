@@ -58,7 +58,7 @@ const percentChange = computed(() =>
 const classes = computed(() => {
   if (Number(percentChange.value) > 0) {
     return 'text-green-600'
-  } else if (Number(percentChange.value) === 0) {
+  } else if (Number(percentChange.value) === 0 || Number.isNaN(Number(percentChange.value))) {
     return 'text-neutral-600'
   } else {
     return 'text-red-600'
