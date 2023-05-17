@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex h-48 w-96 flex-col justify-center rounded-xl border-[0.5px] border-neutral-300 bg-white p-6 shadow-md"
-  >
+  <div class="shadow-large flex h-48 w-96 flex-col justify-center rounded-xl bg-white p-6">
     <slot></slot>
   </div>
 </template>
