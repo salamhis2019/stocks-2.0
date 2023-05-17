@@ -25,7 +25,10 @@ const currentPrice: any = computed(() => {
   if (dailyTimeSeriesData.value) {
     const closingData: any = Object.values(dailyTimeSeriesData.value)[0]
     const closingDataKeys = Object.keys(closingData)
-    return { close: closingData[closingDataKeys[3]], open: closingData[closingDataKeys[0]] }
+    return {
+      close: closingData[closingDataKeys[3]],
+      open: closingData[closingDataKeys[0]]
+    }
   }
   return ''
 })
