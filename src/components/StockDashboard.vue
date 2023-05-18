@@ -9,7 +9,7 @@ import { storeToRefs } from 'pinia'
 import useStocksDataStore from '@/stores/stocksData.store'
 
 const stocksDataStore = useStocksDataStore()
-const { dailyData, companyData }: any = storeToRefs(stocksDataStore)
+const { dailyData, companyData, companyOverview }: any = storeToRefs(stocksDataStore)
 
 const metaData: any = computed(() => {
   const values = Object.values(dailyData.value)
@@ -70,6 +70,10 @@ const classes = computed(() => {
     return 'text-red-600'
   }
 })
+
+const description = computed(() => {
+  return companyOverview.value.Description
+})
 </script>
 
 <template>
@@ -112,5 +116,8 @@ const classes = computed(() => {
         </div>
       </CardContainer>
     </div>
+    <hr class="mt-6 border-neutral-300" />
+    <h2 class="mb-4 mt-6 text-2xl font-semibold">Overview</h2>
+    <p>{{ description }}</p>
   </div>
 </template>
