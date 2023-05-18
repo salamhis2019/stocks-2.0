@@ -12,7 +12,7 @@ const param = computed(() => route.path)
 <template>
   <div class="flex h-full w-full">
     <SidebarNav />
-    <div class="w-full">
+    <div class="mx-auto w-full max-w-[1300px]">
       <StockDashboard />
     </div>
   </div>
