@@ -81,7 +81,7 @@ const description = computed(() => {
   <div class="p-6">
     <h2 class="mb-4 text-xl font-semibold">Price Action</h2>
     <div class="flex gap-6">
-      <CardContainer>
+      <CardContainer :width="'w-96'" :height="'h-48'">
         <header class="mb-2 flex items-center gap-3">
           <img :src="companyData.logo" class="h-12" alt="" />
           <h1 class="text-2xl font-semibold">{{ companyData.ticker }} - {{ companyData.name }}</h1>
@@ -96,7 +96,7 @@ const description = computed(() => {
         </div>
         <p class="text-sm text-neutral-500">{{ date }}</p>
       </CardContainer>
-      <CardContainer>
+      <CardContainer :width="'w-96'" :height="'h-48'">
         <div class="flex h-full flex-col justify-between">
           <header>
             <h2 class="text-xl font-semibold">Today</h2>
@@ -116,8 +116,9 @@ const description = computed(() => {
         </div>
       </CardContainer>
     </div>
-    <hr class="mt-6 border-neutral-300" />
-    <h2 class="mb-4 mt-6 text-2xl font-semibold">Overview</h2>
-    <p>{{ description }}</p>
+    <CardContainer :width="'w-full'">
+      <h2 class="text-2xl font-semibold">Overview</h2>
+      <p>{{ description }}</p>
+    </CardContainer>
   </div>
 </template>
