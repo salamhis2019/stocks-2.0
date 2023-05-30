@@ -117,8 +117,8 @@ const description = computed(() => {
       </CardContainer>
     </div>
     <CardContainer :width="'w-full'">
-      <h2 class="text-2xl font-semibold">Overview</h2>
-      <p>{{ description }}</p>
+      <h2 class="mb-2 text-xl font-semibold">Overview</h2>
+      <p class="text-sm text-neutral-800">{{ description }}</p>
     </CardContainer>
   </div>
 </template>
